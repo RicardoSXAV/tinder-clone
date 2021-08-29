@@ -4,17 +4,28 @@ import { useFonts } from "expo-font";
 
 interface RegularTextProps {
   children: React.ReactNode;
+  style?: object;
+  [otherProps: string]: any;
 }
 
-export default function RegularText({ children }: RegularTextProps) {
+export default function RegularText({
+  children,
+  style,
+  ...otherProps
+}: RegularTextProps) {
   const [loaded] = useFonts({
-    SKModernistBold: require("../../../../assets/fonts/SK-Modernist-Bold.otf"),
+    SKModernistBold: require("../../../../assets/fonts/Sk-Modernist-Bold.otf"),
   });
 
   return (
     <>
       {loaded ? (
-        <Text style={{ fontFamily: "SKModernistBold" }}>{children}</Text>
+        <Text
+          style={{ fontFamily: "SKModernistBold", ...style }}
+          {...otherProps}
+        >
+          {children}
+        </Text>
       ) : (
         <Text>{children}</Text>
       )}

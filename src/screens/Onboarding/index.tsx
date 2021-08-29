@@ -1,10 +1,18 @@
 import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+import { RootStackParamList } from "../../types";
+
 import COLORS from "../../constants/colors";
 
-import RegularText from "../../components/TextStyles/RegularText";
 import BoldText from "../../components/TextStyles/BoldText";
+import Button from "../../components/Button";
+import RegularText from "../../components/TextStyles/RegularText";
 
+interface OnboardingProps {
+  navigation: StackNavigationProp<RootStackParamList, "Onboarding">;
+}
 interface OnboardingItemProps {
   item: {
     title: string;
@@ -14,14 +22,14 @@ interface OnboardingItemProps {
 
 function OnboardingItem({ item }: OnboardingItemProps) {
   return (
-    <View>
-      <BoldText>{item.title}</BoldText>
-      <RegularText>{item.description}</RegularText>
+    <View style={styles.onboardingContainer}>
+      <BoldText style={styles.title}>{item.title}</BoldText>
+      <RegularText style={styles.description}>{item.description}</RegularText>
     </View>
   );
 }
 
-export default function Onboarding() {
+export default function Onboarding({ navigation }: OnboardingProps) {
   const onboardingData = [
     {
       title: "Algorithm",
@@ -43,20 +51,32 @@ export default function Onboarding() {
   return (
     <>
       <FlatList
-        style={styles.imagesContainer}
         data={onboardingData}
         renderItem={({ item }) => <OnboardingItem item={item} />}
+        horizontal
+        showsHorizontalScrollIndicator={false}
       />
+
+      <Button onPress={() => navigation.navigate("SignUp")}>
+        Create an account
+      </Button>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  onboardingContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   imagesContainer: {
     flex: 0.4,
   },
   title: {
     color: COLORS.red,
   },
-  description: {},
+  description: {
+    color: COLORS.textSecondary,
+  },
 });
