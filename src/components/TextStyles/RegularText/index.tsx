@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 
 interface RegularTextProps {
   children: React.ReactNode;
-  style: object;
+  style?: object;
   [otherProps: string]: any;
 }
 

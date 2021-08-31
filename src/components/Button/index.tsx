@@ -26,12 +26,15 @@ export default function Button({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: COLORS.red,
-    alignItems: "center",
-    padding: 20,
+    alignSelf: "center",
+    width: 330,
+    marginBottom: 30,
+    padding: 18,
     borderRadius: 20,
   },
   buttonText: {
     color: COLORS.white,
     fontSize: 17,
+    textAlign: "center",
   },
 });
