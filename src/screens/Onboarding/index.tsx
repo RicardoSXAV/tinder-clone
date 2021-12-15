@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import {
   Animated,
   FlatList,
@@ -21,9 +21,11 @@ import RegularText from "../../components/TextStyles/RegularText";
 import BoldText from "../../components/TextStyles/BoldText";
 import Button from "../../components/Button";
 import FONTS from "../../constants/fonts";
+
 interface OnboardingProps {
   navigation: StackNavigationProp<RootStackParamList, "Onboarding">;
 }
+
 interface OnboardingItemProps {
   item: {
     image: ImageSourcePropType;
@@ -44,12 +46,24 @@ function OnboardingItem({ item }: OnboardingItemProps) {
 }
 
 export default function Onboarding({ navigation }: OnboardingProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleViewableItemsChange = useCallback(({ viewableItems }) => {
+    setCurrentIndex(viewableItems[0].index);
+  }, []);
+
+  const _viewabilityConfig = {
+    itemVisiblePercentThreshold: 50,
+  };
+
   return (
     <>
       <FlatList
         data={onboardingData}
         renderItem={({ item }) => <OnboardingItem item={item} />}
-        keyExtractor={(item, index) => index.toString()}
+        onViewableItemsChanged={handleViewableItemsChange}
+        viewabilityConfig={_viewabilityConfig}
+        keyExtractor={(_, index) => index.toString()}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
@@ -64,7 +78,10 @@ export default function Onboarding({ navigation }: OnboardingProps) {
         }}
       >
         {onboardingData.map((_, index) => (
-          <View style={index === 0 ? styles.activeDot : styles.dot} />
+          <View
+            key={index}
+            style={index === currentIndex ? styles.activeDot : styles.dot}
+          />
         ))}
       </View>
 
@@ -82,7 +99,7 @@ export default function Onboarding({ navigation }: OnboardingProps) {
         <RegularText>Already have an account? </RegularText>
         <BoldText
           style={{ color: COLORS.red }}
-          onPress={() => navigation.navigate("SignUp")}
+          onPress={() => navigation.navigate("SignIn")}
         >
           Sign In
         </BoldText>
