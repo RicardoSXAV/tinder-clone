@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableHighlight } from "react-native";
 
 import COLORS from "../../constants/colors";
 
@@ -17,9 +17,14 @@ export default function Button({
   ...otherProps
 }: ButtonProps) {
   return (
-    <TouchableOpacity style={styles.button} {...otherProps}>
+    <TouchableHighlight
+      style={styles.button}
+      activeOpacity={0.6}
+      underlayColor="#DDDDDD"
+      {...otherProps}
+    >
       <BoldText style={styles.buttonText}>{children}</BoldText>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 }
 

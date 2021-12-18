@@ -1,12 +1,9 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
-  Animated,
   FlatList,
   Image,
   ImageSourcePropType,
   StyleSheet,
-  Text,
-  useWindowDimensions,
   View,
 } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
