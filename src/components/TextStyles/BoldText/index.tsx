@@ -1,10 +1,10 @@
 import React from "react";
-import { Text } from "react-native";
+import { StyleProp, Text, TextProps, TextStyle } from "react-native";
 import { useFonts } from "expo-font";
 
-interface RegularTextProps {
+interface RegularTextProps extends TextProps {
   children: React.ReactNode;
-  style?: object;
+  style?: StyleProp<TextStyle> | undefined;
   [otherProps: string]: any;
 }
 
@@ -21,7 +21,7 @@ export default function RegularText({
     <>
       {loaded ? (
         <Text
-          style={{ fontFamily: "SKModernistBold", ...style }}
+          style={{ fontFamily: "SKModernistBold", ...(style as object) }}
           {...otherProps}
         >
           {children}

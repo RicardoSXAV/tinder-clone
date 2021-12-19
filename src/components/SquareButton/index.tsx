@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableHighlightProps } from "react-native";
+import { StyleSheet, TouchableHighlight } from "react-native";
 
 import COLORS from "../../constants/colors";
 
-interface ButtonProps {
+interface ButtonProps extends TouchableHighlightProps {
   children: React.ReactNode;
   style?: object;
   [otherProps: string]: any;
@@ -15,9 +16,13 @@ export default function SquareButton({
   ...otherProps
 }: ButtonProps) {
   return (
-    <TouchableOpacity style={styles.button} {...otherProps}>
+    <TouchableHighlight
+      style={{ ...styles.button, ...style }}
+      {...otherProps}
+      underlayColor="#EEEEEE"
+    >
       {children}
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 }
 
@@ -27,6 +32,6 @@ const styles = StyleSheet.create({
     padding: 15,
     borderWidth: 1,
     borderColor: COLORS.lightGray,
-    borderRadius: 8,
+    borderRadius: 13,
   },
 });

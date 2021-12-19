@@ -1,8 +1,6 @@
 import React from "react";
 import {
-  StyleProp,
   StyleSheet,
-  TextStyle,
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
@@ -13,18 +11,18 @@ import BoldText from "../TextStyles/BoldText";
 
 interface ButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
-  style?: StyleProp<TextStyle> | undefined;
+  style?: object;
   [otherProps: string]: any;
 }
 
-export default function Button({
+export default function ButtonSecondary({
   children,
   style,
   ...otherProps
 }: ButtonProps) {
   return (
     <TouchableOpacity
-      style={{ ...styles.button, ...(style as object) }}
+      style={{ ...styles.button, ...style }}
       activeOpacity={0.55}
       {...otherProps}
     >
@@ -35,13 +33,15 @@ export default function Button({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: COLORS.red,
+    backgroundColor: COLORS.white,
     alignItems: "center",
     padding: 20,
     borderRadius: 20,
+    borderColor: COLORS.lightGray,
+    borderWidth: 1,
   },
   buttonText: {
-    color: COLORS.white,
+    color: COLORS.red,
     fontSize: 17,
   },
 });

@@ -72,6 +72,7 @@ export default function Onboarding({ navigation }: OnboardingProps) {
           flex: 1,
           flexDirection: "row",
           justifyContent: "center",
+          marginBottom: 20,
         }}
       >
         {onboardingData.map((_, index) => (
@@ -82,7 +83,10 @@ export default function Onboarding({ navigation }: OnboardingProps) {
         ))}
       </View>
 
-      <Button onPress={() => navigation.navigate("SignUp")}>
+      <Button
+        style={styles.button}
+        onPress={() => navigation.navigate("SignUp")}
+      >
         Create an account
       </Button>
 
@@ -90,6 +94,7 @@ export default function Onboarding({ navigation }: OnboardingProps) {
         style={{
           flexDirection: "row",
           alignSelf: "center",
+          marginTop: 20,
           marginBottom: 30,
         }}
       >
@@ -118,7 +123,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 70,
   },
-  imagesContainer: {},
   title: {
     color: COLORS.red,
     fontSize: FONTS.h3,
@@ -144,4 +148,5 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.red,
     marginHorizontal: 4,
   },
+  button: { width: SIZES.width / 1.3, alignSelf: "center" },
 });
