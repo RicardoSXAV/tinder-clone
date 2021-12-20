@@ -1,7 +1,9 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { StackNavigationProp } from "@react-navigation/stack";
 
+import { RootStackParamList } from "../../types";
 import COLORS from "../../constants/colors";
 import SIZES from "../../constants/sizes";
 import BoldText from "../../components/TextStyles/BoldText";
@@ -11,7 +13,11 @@ import Button from "../../components/Button";
 import ButtonSecondary from "../../components/ButtonSecondary";
 import RegularText from "../../components/TextStyles/RegularText";
 
-export default function SignUp() {
+interface SignUpProps {
+  navigation: StackNavigationProp<RootStackParamList, "SignUp">;
+}
+
+export default function SignUp({ navigation }: SignUpProps) {
   function handleSocialAuth() {
     console.log("Social Auth");
   }
@@ -27,7 +33,9 @@ export default function SignUp() {
 
       <View style={styles.signUpButtons}>
         <Button>Continue with email</Button>
-        <ButtonSecondary>Use phone number</ButtonSecondary>
+        <ButtonSecondary onPress={() => navigation.navigate("SignUpNumber")}>
+          Use phone number
+        </ButtonSecondary>
       </View>
 
       <View style={styles.divider}>

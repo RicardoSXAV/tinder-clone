@@ -8,6 +8,7 @@ import { RootStackParamList } from "./src/types";
 
 import Onboarding from "./src/screens/Onboarding";
 import SignUp from "./src/screens/SignUp";
+import SignUpNumber from "./src/screens/SignUpNumber";
 
 export default function App() {
   const Stack = createStackNavigator<RootStackParamList>();
@@ -24,6 +25,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignUpNumber" component={SignUpNumber} />
       </Stack.Navigator>
     </NavigationContainer>
   );
