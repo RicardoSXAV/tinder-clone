@@ -1,12 +1,18 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
+import { RootStackParamList } from "../../types";
 import LargeTitle from "../../components/TextStyles/LargeTitle";
 import RegularText from "../../components/TextStyles/RegularText";
 import Button from "../../components/Button";
 import PhoneNumberInput from "../../components/PhoneNumberInput";
 
-export default function SignUpNumber() {
+interface SignUpNumberProps {
+  navigation: StackNavigationProp<RootStackParamList, "SignUp">;
+}
+
+export default function SignUpNumber({ navigation }: SignUpNumberProps) {
   return (
     <View style={styles.globalContainer}>
       <LargeTitle style={styles.title}>My mobile</LargeTitle>
@@ -17,7 +23,9 @@ export default function SignUpNumber() {
 
       <PhoneNumberInput wrapperStyle={{ marginBottom: 70 }} />
 
-      <Button>Continue</Button>
+      <Button onPress={() => navigation.navigate("SignUpNumberCode")}>
+        Continue
+      </Button>
     </View>
   );
 }
@@ -26,7 +34,8 @@ const styles = StyleSheet.create({
   globalContainer: {
     flex: 1,
     alignSelf: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    marginTop: "30%",
     width: "80%",
   },
   title: {

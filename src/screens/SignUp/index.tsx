@@ -32,7 +32,7 @@ export default function SignUp({ navigation }: SignUpProps) {
       <BoldText style={styles.signUpHeading}>Sign up to continue</BoldText>
 
       <View style={styles.signUpButtons}>
-        <Button>Continue with email</Button>
+        <Button style={{ marginBottom: 20 }}>Continue with email</Button>
         <ButtonSecondary onPress={() => navigation.navigate("SignUpNumber")}>
           Use phone number
         </ButtonSecondary>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   divider: {
     flex: 0,
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 70,
   },
   signUpHeading: {
     fontSize: 20,
@@ -86,17 +86,14 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   signUpButtons: {
-    flex: 0.45,
     marginBottom: 70,
     justifyContent: "space-between",
   },
   socialButtons: {
     flexDirection: "row",
-    flex: 0.2,
     justifyContent: "space-around",
   },
   flexRow: {
-    flex: 0,
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 70,
